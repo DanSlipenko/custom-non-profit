@@ -1,0 +1,11 @@
+/*
+ * Custom shadow tokens
+ * Import this file in globals.css and use via Tailwind: shadow-primary, shadow-soft, etc.
+ */
+
+@theme inline {
+  --shadow-primary: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  --shadow-soft: rgba(0, 0, 0, 0.08) 0px 8px 24px;
+  --shadow-elevated: rgba(0, 0, 0, 0.15) 0px 12px 40px;
+  --shadow-subtle: rgba(0, 0, 0, 0.05) 0px 4px 12px;
+}

@@ -12,6 +12,13 @@
   --color-muted: var(--muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Shadows */
+  --shadow-primary: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  --shadow-secondary: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --shadow-soft: rgba(0, 0, 0, 0.08) 0px 8px 24px;
+  --shadow-elevated: rgba(0, 0, 0, 0.15) 0px 12px 40px;
+  --shadow-subtle: rgba(0, 0, 0, 0.05) 0px 4px 12px;
 }
 
 @media (prefers-color-scheme: dark) {

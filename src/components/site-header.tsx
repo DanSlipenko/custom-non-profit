@@ -2,46 +2,49 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { NavLink } from "@/components/nav-link";
+import { NavDropdown } from "@/components/nav-dropdown";
 import { MobileNav } from "@/components/mobile-nav";
 import { site } from "@/lib/site";
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200/70 bg-white/80 backdrop-blur dark:border-zinc-800/70 dark:bg-zinc-950/70">
-      <Container className="flex h-16 items-center justify-between">
+      <Container className="flex h-22 items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 font-semibold tracking-tight text-zinc-950 dark:text-white"
-          >
-            <span className="grid size-8 place-items-center rounded-xl bg-zinc-950 text-white dark:bg-white dark:text-zinc-950">
-              G
-            </span>
+          <Link href="/" className="inline-flex items-center gap-2 font-semibold tracking-tight text-zinc-950 dark:text-white">
+            <span className="grid size-8 place-items-center rounded-xl bg-zinc-950 text-white dark:bg-white dark:text-zinc-950">G</span>
             <span className="hidden sm:inline">{site.name}</span>
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex">
-            <NavLink href="/">Home</NavLink>
-            <NavLink href="/about">About</NavLink>
-            <NavLink href="/ministries">Ministries</NavLink>
-            <NavLink href="/events">Events</NavLink>
-            <NavLink href="/sermons">Sermons</NavLink>
-            <NavLink href="/give">Give</NavLink>
-            <NavLink href="/contact">Contact</NavLink>
+          <nav className="hidden items-center gap-0 md:flex">
+            <NavDropdown
+              label="Медия"
+              items={[
+                { label: "Видео", href: "/sermons", icon: "Video" },
+                { label: "Подкасты", href: "/about", icon: "Mic" },
+                { label: "Проповеди", href: "/sermons", icon: "BookOpen" },
+                { label: "Статьи", href: "/about", icon: "FileText" },
+                { label: "Книги", href: "/about", icon: "BookMarked" },
+                { label: "Радио", href: "/about", icon: "Radio" },
+                { label: "Газета", href: "/about", icon: "Newspaper" },
+              ]}
+            />
+            <NavLink href="/communities">Общины</NavLink>
+            <NavLink href="/sermons">Обучение</NavLink>
+            <NavLink href="/give">Пожертвовать</NavLink>
           </nav>
         </div>
 
         <div className="flex items-center gap-2">
           <MobileNav />
-          <ButtonLink href="/contact" variant="secondary" size="sm">
-            Plan a visit
+          <ButtonLink href="/contact" variant="secondary" size="md">
+            Контакты
           </ButtonLink>
-          <ButtonLink href="/give" size="sm" className="hidden sm:inline-flex">
-            Give
+          <ButtonLink href="/give" size="md" className="hidden sm:inline-flex">
+            Вступить в Альянс
           </ButtonLink>
         </div>
       </Container>
     </header>
   );
 }
-
