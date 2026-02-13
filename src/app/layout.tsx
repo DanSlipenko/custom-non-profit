@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ToastProvider } from "@/components/ui/toast";
 import { site } from "@/lib/site";
 
 const geistSans = Geist({
@@ -31,13 +32,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-full bg-white text-zinc-950 antialiased dark:bg-zinc-950 dark:text-zinc-50`}
-      >
-        <div className="flex min-h-screen flex-col">
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-        </div>
+        className={`${geistSans.variable} ${geistMono.variable} min-h-full bg-white text-zinc-950 antialiased dark:bg-zinc-950 dark:text-zinc-50`}>
+        <ToastProvider>
+          <div className="flex min-h-screen flex-col">
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+          </div>
+        </ToastProvider>
       </body>
     </html>
   );

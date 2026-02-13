@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { EventCarousel } from "@/components/ui/event-carousel";
 import { communities, getCommunityBySlug } from "@/lib/communities";
+import { getEventsByCommunity } from "@/lib/events";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -30,6 +31,8 @@ export default async function CommunityPage({ params }: PageProps) {
   const community = getCommunityBySlug(slug);
 
   if (!community) notFound();
+
+  const communityEvents = getEventsByCommunity(slug);
 
   return (
     <div>
@@ -59,7 +62,7 @@ export default async function CommunityPage({ params }: PageProps) {
             </div>
             <p className="text-lg leading-8 text-zinc-200">{community.description}</p>
             {/* Details inline */}
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-zinc-300 bg-white/10 p-4 rounded-2xl">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-zinc-300 bg-white/15 backdrop-blur-sm p-4 rounded-2xl">
               <span>
                 <span className="font-medium text-white">Лидер:</span> {community.leader}
               </span>
@@ -89,34 +92,24 @@ export default async function CommunityPage({ params }: PageProps) {
         <Container className="py-14">
           <EventCarousel
             heading="События"
-            events={[
-              {
-                label: "Проповедь",
-                title: "Последняя проповедь",
-                imageSrc: community.imageSrc,
-              },
-              {
-                date: "2 февраля",
-                title: "Запуск малых групп",
-                imageSrc: community.imageSrc,
-              },
-              {
-                date: "12 февраля",
-                title: "Семейный вечер",
-                imageSrc: community.imageSrc,
-              },
-              {
-                date: "27-28 февраля",
-                title: "Молодёжная конференция",
-                imageSrc: community.imageSrc,
-              },
-              {
-                label: "События",
-                title: "Календарь общины",
-                href: "/events",
-                imageSrc: community.imageSrc,
-              },
-            ]}
+            events={
+              communityEvents.length > 0 ?
+                communityEvents.map((e) => ({
+                  label: e.label,
+                  date: e.date,
+                  title: e.title,
+                  imageSrc: e.imageSrc,
+                  href: `/events/${e.slug}`,
+                }))
+              : [
+                  {
+                    label: "События",
+                    title: "Календарь общины",
+                    href: "/events",
+                    imageSrc: community.imageSrc,
+                  },
+                ]
+            }
           />
         </Container>
       </section>

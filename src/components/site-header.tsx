@@ -16,7 +16,7 @@ export function SiteHeader() {
             <span className="hidden sm:inline">{site.name}</span>
           </Link>
 
-          <nav className="hidden items-center gap-0 md:flex">
+          <nav className="hidden items-center gap-1 md:flex">
             <NavDropdown
               label="Медия"
               items={[
@@ -40,7 +40,7 @@ export function SiteHeader() {
           <ButtonLink href="/contact" variant="secondary" size="md">
             Контакты
           </ButtonLink>
-          <ButtonLink href="/give" size="md" className="hidden sm:inline-flex">
+          <ButtonLink href="/join-alliance" size="md" className="hidden sm:inline-flex">
             Вступить в Альянс
           </ButtonLink>
         </div>
