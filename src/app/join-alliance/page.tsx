@@ -6,6 +6,7 @@ import { QaSection } from "@/components/ui/qa-section";
 import type { QaItem } from "@/components/ui/qa-section";
 import { Banner } from "@/components/ui/banner";
 import { Users } from "lucide-react";
+import { SubscribeToNewsletter } from "@/components/subscribe-to-newsletter";
 
 const joinAllianceFaqs: QaItem[] = [
   {
@@ -88,6 +89,9 @@ export default function JoinAlliancePage() {
         description="Ответы на самые популярные вопросы о вступлении в Альянс."
         items={joinAllianceFaqs}
       />
+
+      {/* ───── Newsletter section ───── */}
+      <SubscribeToNewsletter imageSrc="/cc-banner.jpg" />
     </div>
   );
 }

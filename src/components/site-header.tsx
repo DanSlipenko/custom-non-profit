@@ -20,12 +20,13 @@ export function SiteHeader() {
             <NavDropdown
               label="Медия"
               items={[
-                { label: "Видео", href: "/sermons", icon: "Video" },
-                { label: "Подкасты", href: "/about", icon: "Mic" },
+                { label: "Вся медия", href: "/media", icon: "Play" },
+                { label: "Видео", href: "/videos", icon: "Video" },
+                { label: "Подкасты", href: "/podcasts", icon: "Mic" },
                 { label: "Проповеди", href: "/sermons", icon: "BookOpen" },
-                { label: "Статьи", href: "/about", icon: "FileText" },
-                { label: "Книги", href: "/about", icon: "BookMarked" },
-                { label: "Радио", href: "/about", icon: "Radio" },
+                { label: "Статьи", href: "/articles", icon: "FileText" },
+                { label: "Книги", href: "/books", icon: "BookMarked" },
+                { label: "Радио", href: "/radio", icon: "Radio" },
                 { label: "Газета", href: "/about", icon: "Newspaper" },
               ]}
             />
