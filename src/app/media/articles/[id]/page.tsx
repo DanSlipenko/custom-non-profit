@@ -100,14 +100,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                 Главная
               </Link>
               <span className="mx-2 opacity-40">/</span>
-              <Link href="/articles" className="hover:text-zinc-900 dark:hover:text-white transition-colors">
+              <Link href="/media/articles" className="hover:text-zinc-900 dark:hover:text-white transition-colors">
                 Статьи
               </Link>
               <span className="mx-2 opacity-40">/</span>
               <span className="text-zinc-900 dark:text-white line-clamp-1 max-w-xs inline-block align-bottom">{article.title}</span>
             </nav>
             <Link
-              href="/articles"
+              href="/media/articles"
               className="inline-flex items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
               <ArrowLeft className="h-3.5 w-3.5" />
               Все статьи

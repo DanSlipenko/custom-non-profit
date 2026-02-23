@@ -19,19 +19,18 @@ export function SiteHeader() {
           <nav className="hidden items-center gap-1 md:flex">
             <NavDropdown
               label="Медия"
+              href="/media"
               items={[
-                { label: "Вся медия", href: "/media", icon: "Play" },
-                { label: "Видео", href: "/videos", icon: "Video" },
-                { label: "Подкасты", href: "/podcasts", icon: "Mic" },
-                { label: "Проповеди", href: "/sermons", icon: "BookOpen" },
-                { label: "Статьи", href: "/articles", icon: "FileText" },
-                { label: "Книги", href: "/books", icon: "BookMarked" },
-                { label: "Радио", href: "/radio", icon: "Radio" },
-                { label: "Газета", href: "/about", icon: "Newspaper" },
+                { label: "Видео", href: "/media/videos", icon: "Video" },
+                { label: "Подкасты", href: "/media/podcasts", icon: "Mic" },
+                { label: "Проповеди", href: "/media/sermons", icon: "BookOpen" },
+                { label: "Статьи", href: "/media/articles", icon: "FileText" },
+                { label: "Книги", href: "/media/books", icon: "BookMarked" },
+                { label: "Радио", href: "/media/radio", icon: "Radio" },
               ]}
             />
             <NavLink href="/communities">Общины</NavLink>
-            <NavLink href="/sermons">Обучение</NavLink>
+            <NavLink href="/media/sermons">Обучение</NavLink>
             <NavLink href="/give">Пожертвовать</NavLink>
           </nav>
         </div>

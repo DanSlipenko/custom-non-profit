@@ -26,10 +26,10 @@ function DynamicIcon({ name, className, strokeWidth }: { name: string; className
   return <Icon className={className} strokeWidth={strokeWidth} />;
 }
 
-export function NavDropdown({ label, items, className }: { label: string; items: DropdownItem[]; className?: string }) {
+export function NavDropdown({ label, href, items, className }: { label: string; href: string; items: DropdownItem[]; className?: string }) {
   return (
     <div className={cn("group relative", className)}>
-      <ButtonLink href="/about" variant="ghost" size="md">
+      <ButtonLink href={href} variant="ghost" size="md">
         {label}
         <svg
           className="size-3.5 opacity-50 transition-transform group-hover:rotate-180"

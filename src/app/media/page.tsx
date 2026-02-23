@@ -5,8 +5,8 @@ import { MediaCard } from "@/components/ui/media-card";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { SubscribeToNewsletter } from "@/components/subscribe-to-newsletter";
 import { categories, getRecentByCategory, formatDate, type MediaItem } from "@/lib/media-data";
-import { videos as allVideos, primaryVideoId, highlightedIds } from "@/app/videos/data";
-import { books as allBooks, featuredBookId, recommendedIds as recommendedBookIds } from "@/app/books/data";
+import { videos as allVideos, primaryVideoId, highlightedIds } from "@/app/media/videos/data";
+import { books as allBooks, featuredBookId, recommendedIds as recommendedBookIds } from "@/app/media/books/data";
 import { PodcastEpisodeList } from "@/components/podcast-episode-list";
 import { ArticleCard } from "@/components/article-card";
 import { BookCard } from "@/components/book-card";
@@ -248,7 +248,7 @@ function RadioPreview() {
     <div className="mt-10 grid gap-6 lg:grid-cols-2">
       {/* Mini player card */}
       <Link
-        href="/radio"
+        href="/media/radio"
         className="group relative flex flex-col items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-8 shadow-secondary transition-all duration-300 hover:shadow-primary hover:border-zinc-300 dark:border-zinc-800 dark:from-emerald-950/30 dark:via-zinc-950 dark:to-teal-950/20 dark:hover:border-zinc-700 sm:p-10">
         {/* Decorative blurs */}
         <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-emerald-200/30 blur-3xl dark:bg-emerald-800/20" />
@@ -292,7 +292,7 @@ function RadioPreview() {
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-sm font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Расписание</h3>
           <Link
-            href="/radio"
+            href="/media/radio"
             className="text-xs font-medium text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 transition-colors">
             Полное расписание →
           </Link>

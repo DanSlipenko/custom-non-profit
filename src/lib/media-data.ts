@@ -74,11 +74,11 @@ export const categories: CategoryMeta[] = [
 
 /* ─── Import data from each sub-page's own data file ─── */
 
-import { videos } from "@/app/videos/data";
-import { podcasts } from "@/app/podcasts/data";
-import { articles } from "@/app/articles/data";
-import { books } from "@/app/books/data";
-import { radioItems } from "@/app/radio/data";
+import { videos } from "@/app/media/videos/data";
+import { podcasts } from "@/app/media/podcasts/data";
+import { articles } from "@/app/media/articles/data";
+import { books } from "@/app/media/books/data";
+import { radioItems } from "@/app/media/radio/data";
 
 const allItems: Record<MediaCategory, MediaItem[]> = {
   videos,
