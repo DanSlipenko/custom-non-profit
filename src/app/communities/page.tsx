@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { CommunityCard } from "@/components/ui/community-card";
@@ -13,23 +14,24 @@ export const metadata: Metadata = {
 export default function CommunitiesPage() {
   return (
     <div>
-      <section className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
-        <Container className="py-14 sm:py-24">
+      <section className="relative min-h-[400px] overflow-hidden py-14 sm:py-24">
+        <img src="/church1.jpg" alt="Общины" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/60 to-transparent" />
+
+        <Container className="relative z-10">
           <div className="max-w-2xl space-y-4">
-            <div className="border-l-4 border-zinc-950 pl-4 dark:border-white">
-              <h1 className="text-5xl font-semibold tracking-tight">Общины</h1>
+            <nav className="text-sm text-zinc-300">
+              <Link href="/" className="transition-colors hover:text-white">
+                Главная
+              </Link>
+              <span className="mx-2">/</span>
+              <span className="text-white">Общины</span>
+            </nav>
+
+            <div className="border-l-4 border-white pl-4">
+              <h1 className="text-5xl font-semibold tracking-tight text-white">Общины</h1>
             </div>
-            <p className="text-lg leading-8 text-zinc-700 dark:text-zinc-300">
-              Найди место, где ты сможешь расти, служить и строить отношения в {site.name}.
-            </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact" size="lg">
-                Связаться
-              </ButtonLink>
-              <ButtonLink href="/events" variant="secondary" size="lg">
-                События
-              </ButtonLink>
-            </div>
+            <p className="text-lg leading-8 text-zinc-200">Найди место, где ты сможешь расти, служить и строить отношения в {site.name}.</p>
           </div>
         </Container>
       </section>
