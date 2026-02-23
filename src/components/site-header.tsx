@@ -30,7 +30,7 @@ export function SiteHeader() {
               ]}
             />
             <NavLink href="/communities">Общины</NavLink>
-            <NavLink href="/media/sermons">Обучение</NavLink>
+            <NavLink href="/about">О нас</NavLink>
             <NavLink href="/give">Пожертвовать</NavLink>
           </nav>
         </div>
