@@ -1,5 +1,12 @@
 export type MediaCategory = "videos" | "podcasts" | "articles" | "books" | "radio";
 
+/** Structured content block for articles */
+export type ArticleContentBlock =
+  | { type: "heading"; text: string }
+  | { type: "paragraph"; text: string }
+  | { type: "quote"; text: string; attribution?: string }
+  | { type: "list"; items: string[] };
+
 export interface MediaItem {
   id: string;
   title: string;
@@ -16,6 +23,8 @@ export interface MediaItem {
     name: string;
     href?: string;
   };
+  /** Rich body content for article detail pages */
+  content?: ArticleContentBlock[];
 }
 
 /* ─── Category metadata ─── */
