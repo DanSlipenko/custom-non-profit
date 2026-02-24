@@ -37,3 +37,15 @@ body {
 ::selection {
   background: color-mix(in oklab, var(--foreground) 15%, transparent);
 }
+
+@keyframes ray-shimmer {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.04);
+  }
+}

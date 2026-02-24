@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/container";
 import { Banner } from "@/components/ui/banner";
 import { SubscribeToNewsletter } from "@/components/subscribe-to-newsletter";
 import { formatDate } from "@/lib/media-data";
+import { Badge } from "@/components/ui/badge";
 import { articles } from "./data";
 import { ArticleCard, authorColor, getArticleHref, readingTime } from "@/components/article-card";
 
@@ -74,10 +75,10 @@ export default function ArticlesPage() {
               <div className="relative p-8 sm:p-12">
                 {/* Top meta row */}
                 <div className="flex flex-wrap items-center gap-3 mb-5">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/20">
+                  <Badge className="gap-1.5 flex items-center">
                     <BookOpen className="h-3 w-3" />
                     Статья
-                  </span>
+                  </Badge>
                   <span className="inline-flex items-center gap-1.5 text-xs text-zinc-500">
                     <Clock className="h-3.5 w-3.5" />
                     {readingTime(featured.description)}
