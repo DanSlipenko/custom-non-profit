@@ -166,7 +166,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
               <div className="grid sm:grid-cols-2 border overflow-hidden border-zinc-200 dark:border-zinc-800 rounded-2xl">
                 {prevArticle ?
                   <Link
-                    href={prevArticle.href || `/articles/${prevArticle.id}`}
+                    href={`/media/${prevArticle.href || `/articles/${prevArticle.id}`}`}
                     className="group flex flex-col gap-1 hover:bg-blue-50 dark:hover:bg-blue-900/40 p-4 transition-all duration-200">
                     <span className="flex items-center gap-1 text-sm text-zinc-400 ml-1">
                       <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-x-1" />
@@ -179,7 +179,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                 : <div />}
                 {nextArticle ?
                   <Link
-                    href={nextArticle.href || `/articles/${nextArticle.id}`}
+                    href={`/media/${nextArticle.href || `/articles/${nextArticle.id}`}`}
                     className="group flex flex-col gap-1 border-l border-zinc-200 dark:border-zinc-800 hover:bg-blue-50 dark:hover:bg-blue-900/40 p-4 transition-all duration-200 text-right sm:items-end">
                     <span className="flex items-center gap-1 text-sm text-zinc-400 mr-1">
                       Следующая

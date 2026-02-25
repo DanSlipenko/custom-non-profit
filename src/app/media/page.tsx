@@ -59,7 +59,7 @@ export default function MediaPage() {
                   <h2 className="text-3xl font-semibold tracking-tight text-zinc-950 dark:text-white">{cat.label}</h2>
                   <p className="max-w-xl text-zinc-600 dark:text-zinc-400">{cat.description}</p>
                 </div>
-                <ButtonLink href={`/${cat.slug}`} variant="secondary" size="md">
+                <ButtonLink href={`/media/${cat.slug}`} variant="secondary" size="md">
                   Все {cat.label.toLowerCase()} →
                 </ButtonLink>
               </div>

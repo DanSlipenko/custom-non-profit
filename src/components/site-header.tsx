@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { NavLink } from "@/components/nav-link";
 import { NavDropdown } from "@/components/nav-dropdown";
 import { MobileNav } from "@/components/mobile-nav";
-import { site } from "@/lib/site";
+import Image from "next/image";
 
 export function SiteHeader() {
   return (
@@ -12,8 +12,7 @@ export function SiteHeader() {
       <Container className="flex h-22 items-center justify-between">
         <div className="flex items-center gap-6">
           <Link href="/" className="inline-flex items-center gap-2 font-semibold tracking-tight text-zinc-950 dark:text-white">
-            <span className="grid size-8 place-items-center rounded-xl bg-zinc-950 text-white dark:bg-white dark:text-zinc-950">G</span>
-            <span className="hidden sm:inline">{site.name}</span>
+            <Image src="/logo.svg" alt="Logo" width={70} height={70} />
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
@@ -31,6 +30,7 @@ export function SiteHeader() {
             />
             <NavLink href="/communities">Общины</NavLink>
             <NavLink href="/about">О нас</NavLink>
+            <NavLink href="/read-torah">Тора</NavLink>
             <NavLink href="/give">Пожертвовать</NavLink>
           </nav>
         </div>

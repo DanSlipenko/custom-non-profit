@@ -19,6 +19,7 @@ export function MobileNav() {
       { href: "/ministries", label: "Ministries" },
       { href: "/events", label: "Events" },
       { href: "/media/sermons", label: "Sermons" },
+      { href: "/read-torah", label: "Read Torah" },
       { href: "/give", label: "Give" },
       { href: "/contact", label: "Contact" },
     ],

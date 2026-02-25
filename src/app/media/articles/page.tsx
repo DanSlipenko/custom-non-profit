@@ -65,7 +65,7 @@ export default function ArticlesPage() {
           <Container className="py-16 sm:py-20">
             <p className="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-6">Последняя публикация</p>
             <Link
-              href={featured.href || getArticleHref(featured.id)}
+              href={`/media/${featured.href || getArticleHref(featured.id)}`}
               aria-label={`Открыть статью: ${featured.title}`}
               className="group relative block overflow-hidden rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-blue-950/20 dark:via-zinc-950 dark:to-sky-950/10 shadow-none transition-all duration-300 hover:-translate-y-1 hover:shadow-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-zinc-950">
               {/* Decorative blobs */}
