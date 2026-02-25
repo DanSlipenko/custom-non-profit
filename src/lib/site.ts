@@ -1,8 +1,7 @@
 export const site = {
-  name: "Grace Community Church",
+  name: "AMJRC",
   tagline: "A place to belong. A faith to build your life on.",
-  description:
-    "Grace Community Church is a welcoming community centered on Jesus—gathering for worship, growing in faith, and serving our city.",
+  description: "AMJRC is a welcoming community centered on Jesus—gathering for worship, growing in faith, and serving our city.",
   givingUrl: "https://tithe.ly/",
   location: {
     addressLine1: "123 Church St",
@@ -11,7 +10,7 @@ export const site = {
   },
   contact: {
     phone: "(555) 123-4567",
-    email: "office@gracechurch.org",
+    email: "[EMAIL_ADDRESS]",
   },
   serviceTimes: [
     { label: "Sunday", time: "9:00 AM & 11:00 AM" },
@@ -23,4 +22,3 @@ export const site = {
     facebook: "https://www.facebook.com/",
   },
 } as const;
-
