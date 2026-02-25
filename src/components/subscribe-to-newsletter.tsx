@@ -73,7 +73,7 @@ export function SubscribeToNewsletter({ imageSrc }: SubscribeToNewsletterProps) 
               inputMode="email"
               required
             />
-            <Button type="submit" disabled={!canSubmit} className="shrink-0" size="lg">
+            <Button type="submit" className="shrink-0" size="lg">
               {status === "submitting" ? "Отправка..." : "Подписаться"}
             </Button>
           </form>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { site } from "@/lib/site";
+import Image from "next/image";
 
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
@@ -17,7 +18,9 @@ export function SiteFooter() {
       <Container className="py-10">
         <div className="grid gap-10 md:grid-cols-3">
           <div className="space-y-3">
-            <div className="font-semibold tracking-tight text-zinc-950 dark:text-white">{site.name}</div>
+            <div className="font-semibold tracking-tight text-zinc-950 dark:text-white">
+              <Image src="/logo.svg" alt="Логотип" width={100} height={100} />
+            </div>
             <div className="text-sm text-zinc-600 dark:text-zinc-400">
               {site.location.addressLine1}
               <br />
@@ -36,32 +39,33 @@ export function SiteFooter() {
 
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
-              <div className="text-sm font-semibold text-zinc-950 dark:text-white">Explore</div>
+              <div className="text-sm font-semibold text-zinc-950 dark:text-white">Навигация</div>
               <div className="flex flex-col gap-2">
-                <FooterLink href="/about">About</FooterLink>
-                <FooterLink href="/ministries">Ministries</FooterLink>
-                <FooterLink href="/events">Events</FooterLink>
-                <FooterLink href="/media/sermons">Sermons</FooterLink>
+                <FooterLink href="/media">Медия</FooterLink>
+                <FooterLink href="/communities">Общины</FooterLink>
+                <FooterLink href="/about">О нас</FooterLink>
+                <FooterLink href="/read-torah">Тора</FooterLink>
               </div>
             </div>
             <div className="space-y-2">
-              <div className="text-sm font-semibold text-zinc-950 dark:text-white">Next steps</div>
+              <div className="text-sm font-semibold text-zinc-950 dark:text-white">Следующие шаги</div>
               <div className="flex flex-col gap-2">
-                <FooterLink href="/contact">Plan a visit</FooterLink>
-                <FooterLink href="/give">Give</FooterLink>
+                <FooterLink href="/contact">Контакты</FooterLink>
+                <FooterLink href="/join-alliance">Вступить в Альянс</FooterLink>
+                <FooterLink href="/give">Пожертвовать</FooterLink>
                 <a
                   className="text-sm text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white"
                   href={site.location.mapsUrl}
                   target="_blank"
                   rel="noreferrer">
-                  Directions
+                  Маршрут
                 </a>
               </div>
             </div>
           </div>
 
           <div className="space-y-3">
-            <div className="text-sm font-semibold text-zinc-950 dark:text-white">Service times</div>
+            <div className="text-sm font-semibold text-zinc-950 dark:text-white">Время служений</div>
             <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
               {site.serviceTimes.map((s) => (
                 <li key={s.label} className="flex items-center justify-between">
@@ -75,7 +79,7 @@ export function SiteFooter() {
 
         <div className="mt-10 flex flex-col gap-2 border-t border-zinc-200 pt-6 text-sm text-zinc-600 dark:border-zinc-800 dark:text-zinc-400 md:flex-row md:items-center md:justify-between">
           <div>
-            © {year} {site.name}. All rights reserved.
+            © {year} {site.name}. Все права защищены.
           </div>
           <div className="flex gap-4">
             <a className="hover:text-zinc-950 dark:hover:text-white" href={site.social.youtube} target="_blank" rel="noreferrer">

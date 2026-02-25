@@ -32,9 +32,9 @@ export interface EventDetail {
 export const events: EventDetail[] = [
   {
     slug: "zapusk-malyh-grupp",
-    title: "Запуск малых групп",
-    label: "Малая группа",
-    date: "2 февраля, 2026",
+    title: "Международная конференция",
+    label: "Конференция",
+    date: "2 - 4 марта, 2026 (Пн - Ср), 3 дня ",
     time: "18:00 – 20:00",
     summary: "Присоединяйтесь к запуску новых малых групп — место, где строятся настоящие отношения.",
     description:
@@ -47,7 +47,7 @@ export const events: EventDetail[] = [
     mapsUrl: "https://maps.google.com/?q=123+Main+St+Springfield+ST+12345",
     hostName: "Пастор Джон Смит",
     hostRole: "Координатор малых групп",
-    imageSrc: "/church1.jpg",
+    imageSrc: "/images/conference.png",
     communitySlug: "grace-downtown",
   },
   {

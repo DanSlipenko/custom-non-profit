@@ -117,7 +117,7 @@ export function EventCarousel({ heading = "Новости", events, className }:
           variant="outline"
           size="md"
           className={cn(
-            "flex h-12 flex-1 items-center justify-center rounded-full border border-zinc-200 transition-colors dark:border-zinc-800",
+            "flex h-12 flex-1 items-center !bg-white justify-center rounded-full border border-zinc-200 transition-colors dark:border-zinc-800",
             canScrollLeft ?
               "text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900"
             : "text-zinc-300 dark:text-zinc-700 cursor-default",
@@ -132,7 +132,7 @@ export function EventCarousel({ heading = "Новости", events, className }:
           variant="outline"
           size="md"
           className={cn(
-            "flex h-12 flex-1 items-center justify-center rounded-full border border-zinc-200 transition-colors dark:border-zinc-800",
+            "flex h-12 flex-1 items-center !bg-white justify-center rounded-full border border-zinc-200 transition-colors dark:border-zinc-800",
             canScrollRight ?
               "text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900"
             : "text-zinc-300 dark:text-zinc-700 cursor-default",

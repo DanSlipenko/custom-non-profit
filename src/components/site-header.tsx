@@ -22,7 +22,6 @@ export function SiteHeader() {
               items={[
                 { label: "Видео", href: "/media/videos", icon: "Video" },
                 { label: "Подкасты", href: "/media/podcasts", icon: "Mic" },
-                { label: "Проповеди", href: "/media/sermons", icon: "BookOpen" },
                 { label: "Статьи", href: "/media/articles", icon: "FileText" },
                 { label: "Книги", href: "/media/books", icon: "BookMarked" },
                 { label: "Радио", href: "/media/radio", icon: "Radio" },
