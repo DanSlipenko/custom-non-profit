@@ -10,7 +10,8 @@ import { books as allBooks, featuredBookId, recommendedIds as recommendedBookIds
 import { PodcastEpisodeList } from "@/components/podcast-episode-list";
 import { ArticleCard } from "@/components/article-card";
 import { BookCard } from "@/components/book-card";
-import { ArrowRight } from "lucide-react";
+import { NewspaperCard } from "@/components/newspaper-card";
+import { Download, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Медия",
@@ -59,7 +60,7 @@ export default function MediaPage() {
                   <h2 className="text-3xl font-semibold tracking-tight text-zinc-950 dark:text-white">{cat.label}</h2>
                   <p className="max-w-xl text-zinc-600 dark:text-zinc-400">{cat.description}</p>
                 </div>
-                <ButtonLink href={`/media/${cat.slug}`} variant="secondary" size="md">
+                <ButtonLink href={`/media/${cat.slug}`} variant="primary" size="md">
                   Все {cat.label.toLowerCase()} →
                 </ButtonLink>
               </div>
@@ -80,6 +81,8 @@ export default function MediaPage() {
                 <BooksLayoutPreview />
               : cat.slug === "radio" ?
                 <RadioPreview />
+              : cat.slug === "newspaper" ?
+                <NewspaperPreview items={items} />
               : /* Cards grid */
                 <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {items.map((item) => (
@@ -312,6 +315,16 @@ function RadioPreview() {
           ))}
         </div>
       </div>
+    </div>
+  );
+}
+
+function NewspaperPreview({ items }: { items: MediaItem[] }) {
+  return (
+    <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((issue) => (
+        <NewspaperCard key={issue.id} issue={issue} />
+      ))}
     </div>
   );
 }

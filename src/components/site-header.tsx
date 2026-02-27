@@ -25,6 +25,7 @@ export function SiteHeader() {
                 { label: "Статьи", href: "/media/articles", icon: "FileText" },
                 { label: "Книги", href: "/media/books", icon: "BookMarked" },
                 { label: "Радио", href: "/media/radio", icon: "Radio" },
+                { label: "Газета", href: "/media/newspaper", icon: "Newspaper" },
               ]}
             />
             <NavLink href="/communities">Общины</NavLink>

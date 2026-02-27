@@ -287,16 +287,10 @@ export default function Home() {
               </div>
 
               {/* Footer */}
-              <div className="flex items-center justify-between border-t border-zinc-200 px-8 py-5 dark:border-zinc-800 sm:px-10">
+              <div className="flex items-center justify-between border-t border-zinc-200 px-8 py-8 dark:border-zinc-800 sm:px-10">
                 <span className="text-xs text-zinc-400 dark:text-zinc-500">
                   {portion.book} · Глава {chapter.chapter}
                 </span>
-                <Link
-                  href="/read-torah"
-                  className="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900">
-                  Читать далее
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
               </div>
             </div>
           </div>

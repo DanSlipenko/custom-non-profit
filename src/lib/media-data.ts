@@ -1,4 +1,4 @@
-export type MediaCategory = "videos" | "podcasts" | "articles" | "books" | "radio";
+export type MediaCategory = "videos" | "podcasts" | "articles" | "books" | "radio" | "newspaper";
 
 /** Structured content block for articles */
 export type ArticleContentBlock =
@@ -70,6 +70,12 @@ export const categories: CategoryMeta[] = [
     description: "Радиопередачи и аудиозаписи эфиров.",
     alliance: { name: "Grace Downtown", href: "/communities/grace-downtown" },
   },
+  {
+    slug: "newspaper",
+    label: "Газета",
+    description: "Официальные печатные издания и вестники общины.",
+    alliance: { name: "Grace Downtown", href: "/communities/grace-downtown" },
+  },
 ];
 
 /* ─── Import data from each sub-page's own data file ─── */
@@ -79,6 +85,7 @@ import { podcasts } from "@/app/media/podcasts/data";
 import { articles } from "@/app/media/articles/data";
 import { books } from "@/app/media/books/data";
 import { radioItems } from "@/app/media/radio/data";
+import { newspaper } from "@/app/media/newspaper/data";
 
 const allItems: Record<MediaCategory, MediaItem[]> = {
   videos,
@@ -86,6 +93,7 @@ const allItems: Record<MediaCategory, MediaItem[]> = {
   articles,
   books,
   radio: radioItems,
+  newspaper,
 };
 
 /* ─── Helpers ─── */
