@@ -63,7 +63,7 @@ const leaders = [
 
 export function TeamSection() {
   return (
-    <section className="bg-zinc-950/90 dark:bg-black">
+    <section id="team" className="bg-zinc-950/90 dark:bg-black">
       <Container className="py-16 lg:py-20">
         <div className="space-y-3 text-center">
           <Badge variant="outline" size="lg" className="!text-white">

@@ -15,7 +15,10 @@ export function SiteHeader() {
             <Image src="/logo.svg" alt="Logo" width={70} height={70} />
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-1 md:flex ml-16">
+            <NavLink href="/communities">Общины</NavLink>
+            <NavLink href="/about">О нас</NavLink>
+            <NavLink href="/read-torah">Тора</NavLink>
             <NavDropdown
               label="Медия"
               href="/media"
@@ -28,9 +31,6 @@ export function SiteHeader() {
                 { label: "Газета", href: "/media/newspaper", icon: "Newspaper" },
               ]}
             />
-            <NavLink href="/communities">Общины</NavLink>
-            <NavLink href="/about">О нас</NavLink>
-            <NavLink href="/read-torah">Тора</NavLink>
             <NavLink href="/give">Пожертвовать</NavLink>
           </nav>
         </div>

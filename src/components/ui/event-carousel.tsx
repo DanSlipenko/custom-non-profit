@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { cn } from "@/lib/cn";
 import { Button } from "./button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 
 export interface EventItem {
   /** Category or label shown above the title (e.g. "MESSAGE", "EVENTS") */
@@ -23,41 +24,28 @@ export interface EventCarouselProps {
   heading?: string;
   /** Array of events to display */
   events: EventItem[];
+  /** Link for the "View all" card */
+  viewAllHref?: string;
+  /** Total count shown in the "View all" card subtitle */
+  viewAllCount?: number;
   className?: string;
 }
 
-export function EventCarousel({ heading = "Новости", events, className }: EventCarouselProps) {
-  const scrollRef = useRef<HTMLDivElement>(null);
+export function EventCarousel({ heading = "Новости", events, viewAllHref, viewAllCount, className }: EventCarouselProps) {
+  const [api, setApi] = useState<CarouselApi>();
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const checkScroll = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 4);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
-  }, []);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    checkScroll();
-    el.addEventListener("scroll", checkScroll, { passive: true });
-    window.addEventListener("resize", checkScroll);
-    return () => {
-      el.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
+  const onApiChange = useCallback((api: CarouselApi) => {
+    if (!api) return;
+    const update = () => {
+      setCanScrollLeft(api.canScrollPrev());
+      setCanScrollRight(api.canScrollNext());
     };
-  }, [checkScroll]);
-
-  const scroll = (direction: "left" | "right") => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const cardWidth = el.querySelector<HTMLElement>("[data-carousel-card]")?.offsetWidth ?? 300;
-    const gap = 16;
-    const distance = cardWidth + gap;
-    el.scrollBy({ left: direction === "left" ? -distance : distance, behavior: "smooth" });
-  };
+    update();
+    api.on("select", update);
+    api.on("reInit", update);
+  }, []);
 
   return (
     <div className={cn("space-y-6", className)}>
@@ -69,50 +57,81 @@ export function EventCarousel({ heading = "Новости", events, className }:
       )}
 
       {/* Cards row */}
-      <div
-        ref={scrollRef}
-        className="flex gap-4 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {events.map((event, i) => {
-          const Tag = event.href ? "a" : "div";
-          return (
-            <Tag
-              key={`${event.title}-${i}`}
-              data-carousel-card
-              {...(event.href ? { href: event.href } : {})}
-              className="group relative flex min-h-[420px] w-[300px] flex-shrink-0 flex-col justify-between overflow-hidden rounded-3xl bg-zinc-800">
-              {/* Background image */}
-              {event.imageSrc && (
-                <img
-                  src={event.imageSrc}
-                  alt={event.title}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              )}
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/40" />
+      <div className="overflow-visible [&_.embla\_\_viewport]:overflow-visible">
+        <Carousel
+          setApi={(emblaApi) => {
+            setApi(emblaApi);
+            onApiChange(emblaApi);
+          }}
+          opts={{ align: "start", slidesToScroll: 1 }}
+          className="w-full">
+          <CarouselContent className="py-8 px-2">
+            {events.map((event, i) => {
+              const Tag = event.href ? "a" : "div";
+              return (
+                <CarouselItem key={`${event.title}-${i}`} className="basis-[300px] pl-4">
+                  <Tag
+                    {...(event.href ? { href: event.href } : {})}
+                    className="group relative flex min-h-[420px] w-full flex-col justify-between overflow-hidden rounded-3xl bg-zinc-800">
+                    {/* Background image */}
+                    {event.imageSrc && (
+                      <img
+                        src={event.imageSrc}
+                        alt={event.title}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    )}
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/40" />
 
-              {/* Top: label + date */}
-              <div className="relative z-10 p-4">
-                {event.label && <div className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/70">{event.label}</div>}
-                {event.date && <div className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/70">{event.date}</div>}
-              </div>
+                    {/* Top: label + date */}
+                    <div className="relative z-10 p-4">
+                      {event.label && (
+                        <div className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/70">{event.label}</div>
+                      )}
+                      {event.date && (
+                        <div className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/70">{event.date}</div>
+                      )}
+                    </div>
 
-              {/* Bottom: title + learn more */}
-              <div className="relative z-10 p-4">
-                <div className="text-lg font-bold leading-snug text-white">{event.title}</div>
-                <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 transition-colors group-hover:text-white">
-                  Подробнее
-                </div>
-              </div>
-            </Tag>
-          );
-        })}
+                    {/* Bottom: title + learn more */}
+                    <div className="relative z-10 p-4">
+                      <div className="text-lg font-bold leading-snug text-white">{event.title}</div>
+                      <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 transition-colors group-hover:text-white">
+                        Подробнее
+                      </div>
+                    </div>
+                  </Tag>
+                </CarouselItem>
+              );
+            })}
+
+            {/* "View all" card */}
+            {viewAllHref && (
+              <CarouselItem className="basis-[300px] pl-4">
+                <a
+                  href={viewAllHref}
+                  className="group flex h-full min-h-[420px] flex-col items-center justify-center gap-4 rounded-3xl border-2 border-dashed border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 transition-all duration-300 hover:border-primary/40 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:-translate-y-1">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 transition-colors group-hover:bg-primary/10">
+                    <ChevronRight className="h-7 w-7 text-zinc-400 group-hover:text-primary transition-colors" strokeWidth={1.5} />
+                  </div>
+                  <div className="text-center">
+                    <p className="text-base font-semibold text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-white">
+                      Все события
+                    </p>
+                    {viewAllCount !== undefined && <p className="mt-1 text-sm text-zinc-400 dark:text-zinc-500">{viewAllCount} событий</p>}
+                  </div>
+                </a>
+              </CarouselItem>
+            )}
+          </CarouselContent>
+        </Carousel>
       </div>
 
       {/* Navigation arrows */}
       <div className="flex gap-3">
         <Button
-          onClick={() => scroll("left")}
+          onClick={() => api?.scrollPrev()}
           disabled={!canScrollLeft}
           variant="outline"
           size="md"
@@ -127,7 +146,7 @@ export function EventCarousel({ heading = "Новости", events, className }:
           Назад
         </Button>
         <Button
-          onClick={() => scroll("right")}
+          onClick={() => api?.scrollNext()}
           disabled={!canScrollRight}
           variant="outline"
           size="md"

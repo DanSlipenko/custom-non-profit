@@ -10,8 +10,13 @@ import { SubscribeToNewsletter } from "@/components/subscribe-to-newsletter";
 import { getDailyReading, torahVersion } from "@/lib/torah-data";
 import { ArrowRight, BookOpen, Scroll, BookMarked } from "lucide-react";
 import { EventCarousel } from "@/components/ui/event-carousel";
+import { VideoCarousel } from "@/components/ui/video-carousel";
 import { events as allEvents } from "@/lib/events";
 import { CountdownSection } from "@/components/countdown-section";
+import { NewspaperCarousel } from "@/components/newspaper-carousel";
+import { newspaper } from "@/app/media/newspaper/data";
+import { LightRays } from "@/components/ui/light-rays";
+import { NoteBanner } from "@/components/president-note";
 
 /* ── Target Date for Countdown ── */
 // 24 days relative to when this module loads
@@ -19,7 +24,7 @@ const targetDate = new Date(Date.now() + 24 * 24 * 60 * 60 * 1000);
 
 export default function Home() {
   /* ── Recent media ── */
-  const recentVideos = getRecentByCategory("videos", 2);
+  const recentVideos = getRecentByCategory("videos", 4);
   const recentArticles = getRecentByCategory("articles", 3);
   const recentPodcasts = getRecentByCategory("podcasts", 3);
 
@@ -81,30 +86,36 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* ───── Note from the President ───── */}
+      <NoteBanner
+        name="Joe Doe"
+        title="Президент АМЕРО"
+        imageSrc="/president.jpg"
+        paragraphs={[
+          "Дорогие братья и сёстры! От всего сердца приветствую вас на страницах нашей ассоциации. Мы живём в особое время — время, когда Господь призывает еврейский народ вернуться к своим корням и познать Мессию Иешуа.",
+          "Наша миссия — объединять русскоязычные мессианские общины, поддерживать пасторов и служителей, распространять Евангелие среди еврейского народа и народов нашей земли. Каждый из вас — дорогая часть этого тела.",
+          "Я верю, что лучшее ещё впереди. Будем вместе идти путём веры, любви и служения — ради Его Царства.",
+        ]}
+        buttonLabel="Узнать больше"
+        buttonHref="/about#team"
+      />
+
       <CountdownSection event={allEvents[0]} targetDate={targetDate} />
 
+      {/* ───── Newspaper ───── */}
       <section className="bg-zinc-50 dark:bg-black">
         <Container className="py-16">
-          <div className="flex items-end justify-between gap-6 mb-8">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-8">
             <div className="space-y-2">
-              <h2 className="text-2xl font-semibold tracking-tight">Upcoming events</h2>
-              <p className="text-zinc-700 dark:text-zinc-300">Join us and get connected this month.</p>
+              <h2 className="text-3xl font-semibold tracking-tight text-zinc-950 dark:text-white">Газета</h2>
+              <p className="max-w-xl text-zinc-600 dark:text-zinc-400">Листайте и скачивайте свежие выпуски нашей общинной газеты.</p>
             </div>
-            <Link href="/events" className="text-sm font-medium text-zinc-950 hover:underline dark:text-white">
-              View all →
-            </Link>
+            <ButtonLink href="/media/newspaper" variant="primary" size="md">
+              Все выпуски →
+            </ButtonLink>
           </div>
 
-          <EventCarousel
-            heading="" // Hiding the internal heading since we have one above
-            events={allEvents.slice(0, 6).map((e) => ({
-              label: e.label,
-              date: e.date,
-              title: e.title,
-              imageSrc: e.imageSrc,
-              href: `/events/${e.slug}`,
-            }))}
-          />
+          <NewspaperCarousel issues={newspaper} />
         </Container>
       </section>
 
@@ -131,93 +142,90 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* ───── Recent News ───── */}
       <section className="bg-zinc-50 dark:bg-black">
+        <Container className="py-16">
+          <div className="flex items-end justify-between gap-6 mb-8">
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold tracking-tight">Upcoming events</h2>
+              <p className="text-zinc-700 dark:text-zinc-300">Join us and get connected this month.</p>
+            </div>
+            <ButtonLink href="/events" variant="primary" size="md">
+              Все события →
+            </ButtonLink>
+          </div>
+
+          <EventCarousel
+            heading="" // Hiding the internal heading since we have one above
+            events={allEvents.slice(0, 6).map((e) => ({
+              label: e.label,
+              date: e.date,
+              title: e.title,
+              imageSrc: e.imageSrc,
+              href: `/events/${e.slug}`,
+            }))}
+          />
+        </Container>
+      </section>
+
+      {/* ───── Recent Videos ───── */}
+      <section className="relative overflow-hidden bg-white dark:bg-zinc-50 border-t border-zinc-200 dark:border-zinc-800">
+        <LightRays className="opacity-20" />
         <Container className="py-16 sm:py-20">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="space-y-2">
-              <h2 className="text-3xl font-semibold tracking-tight text-zinc-950 dark:text-white">Последние новости</h2>
-              <p className="max-w-xl text-zinc-600 dark:text-zinc-400">Статьи, видео и подкасты — оставайтесь на связи с общиной.</p>
+              <h2 className="text-3xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-950">Видео</h2>
+              <p className="max-w-xl text-zinc-600 dark:text-zinc-400">Проповеди и записи наших богослужений.</p>
+            </div>
+            <ButtonLink href="/media/videos" variant="primary" size="md">
+              Все видео →
+            </ButtonLink>
+          </div>
+
+          <VideoCarousel
+            className="mt-10"
+            videos={recentVideos.map((v) => ({
+              id: v.id,
+              title: v.title,
+              description: v.description,
+              imageSrc: v.imageSrc,
+              href: v.href ?? "#",
+              author: v.author,
+              authorHref: v.authorHref,
+              date: formatDate(v.date),
+            }))}
+          />
+        </Container>
+      </section>
+
+      {/* ───── Articles & Podcasts ───── */}
+      <section className="border-t border-zinc-200 bg-white dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950">
+        <Container className="py-16 sm:py-20">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-10">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-semibold tracking-tight text-zinc-950 dark:text-white">Статьи и подкасты</h2>
+              <p className="max-w-xl text-zinc-600 dark:text-zinc-400">Читайте и слушайте — оставайтесь на связи с общиной.</p>
             </div>
             <ButtonLink href="/media" variant="primary" size="md">
               Все медиа →
             </ButtonLink>
           </div>
 
-          {/* Videos */}
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {recentVideos.map((video) => (
-              <div
-                key={video.id}
-                className="group flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition-all duration-300 hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700">
-                <Link href={video.href || "#"} className="relative aspect-video w-full overflow-hidden bg-zinc-100 dark:bg-zinc-900 block">
-                  {video.imageSrc ?
-                    <img
-                      src={video.imageSrc}
-                      alt={video.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  : <div className="flex h-full w-full items-center justify-center">
-                      <svg
-                        className="h-12 w-12 text-zinc-300 dark:text-zinc-700"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={1}>
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"
-                        />
-                      </svg>
-                    </div>
-                  }
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm dark:bg-zinc-950/80">
-                      <svg className="ml-0.5 h-6 w-6 text-zinc-950 dark:text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-                <div className="flex flex-1 flex-col justify-between">
-                  <Link href={video.href || "#"} className="p-5 block">
-                    <h3 className="text-xl font-semibold leading-snug text-zinc-950 dark:text-white line-clamp-2">{video.title}</h3>
-                    <p className="mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2">{video.description}</p>
-                  </Link>
-                  {video.author && video.authorHref ?
-                    <Link
-                      href={video.authorHref}
-                      className="group/link flex items-center justify-between text-xs border-t border-zinc-200 dark:border-zinc-800 py-6 px-5 text-zinc-500 hover:bg-blue-50 hover:text-zinc-950 dark:hover:bg-zinc-900 dark:hover:text-white transition-colors">
-                      <span className="font-medium flex items-center gap-2">
-                        {video.author} <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                      </span>
-                      <span>{formatDate(video.date)}</span>
-                    </Link>
-                  : <div className="flex items-center justify-between text-sm text-zinc-500 border-t border-zinc-200 dark:border-zinc-800 py-6 px-5">
-                      {video.author && (
-                        <span className="font-medium flex items-center gap-2">
-                          {video.author} <ArrowRight className="w-4 h-4" />
-                        </span>
-                      )}
-                      <span>{formatDate(video.date)}</span>
-                    </div>
-                  }
-                </div>
+          <div className="grid gap-10 lg:grid-cols-2">
+            {/* Articles */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Статьи</h3>
+              <div className="grid gap-4">
+                {recentArticles.map((article) => (
+                  <ArticleCard key={article.id} article={article} />
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
 
-          {/* Articles */}
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {recentArticles.map((article) => (
-              <ArticleCard key={article.id} article={article} />
-            ))}
-          </div>
-
-          {/* Podcasts */}
-          <div className="mt-8">
-            <PodcastEpisodeList episodes={recentPodcasts} />
+            {/* Podcasts */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Подкасты</h3>
+              <PodcastEpisodeList episodes={recentPodcasts} />
+            </div>
           </div>
         </Container>
       </section>
@@ -237,7 +245,7 @@ export default function Home() {
             </ButtonLink>
           </div>
 
-          <div className="mt-10 mx-auto max-w-4xl">
+          <div className="mt-10 max-w-4xl mx-auto">
             <div className="rounded-3xl border border-zinc-200 bg-white shadow-secondary dark:border-zinc-800 dark:bg-zinc-950">
               {/* Header */}
               <div className="flex flex-col gap-4 border-b border-zinc-200 px-8 py-6 dark:border-zinc-800 sm:flex-row sm:items-center sm:justify-between sm:px-10">
@@ -270,11 +278,14 @@ export default function Home() {
               </div>
 
               {/* Preview verses (first 5) */}
-              <div className="px-8 py-8 sm:px-10">
+              <div className="px-8 py-8 sm:px-10 bg-neutral-50 dark:bg-zinc-900/40">
+                <p className="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-4">
+                  Глава {chapter.chapter}
+                </p>
                 <div className="space-y-0">
                   {chapter.verses.slice(0, 5).map((v) => (
                     <p key={v.verse} className="text-[17px] leading-[2] text-zinc-700 dark:text-zinc-300">
-                      <span className="mr-1.5 inline-flex h-6 w-6 items-center justify-center rounded-md bg-zinc-100 text-[11px] font-bold tabular-nums text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400 align-text-top">
+                      <span className="mr-1.5 inline-flex h-6 w-6 items-center justify-center rounded-md bg-zinc-100 text-[11px] font-bold tabular-nums text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400 align-text-top">
                         {v.verse}
                       </span>
                       {v.text}{" "}
@@ -287,10 +298,16 @@ export default function Home() {
               </div>
 
               {/* Footer */}
-              <div className="flex items-center justify-between border-t border-zinc-200 px-8 py-8 dark:border-zinc-800 sm:px-10">
+              <div className="flex items-center justify-between border-t border-zinc-200 px-8 py-5 dark:border-zinc-800 sm:px-10">
                 <span className="text-xs text-zinc-400 dark:text-zinc-500">
                   {portion.book} · Глава {chapter.chapter}
                 </span>
+                <Link
+                  href="/read-torah"
+                  className="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900">
+                  Читать далее
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </div>
           </div>
