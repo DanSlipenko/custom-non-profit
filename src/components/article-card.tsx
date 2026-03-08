@@ -42,34 +42,36 @@ export function ArticleCard({ article, className = "" }: ArticleCardProps) {
       href={`/media/${article.href || getArticleHref(article.id)}`}
       aria-label={`Открыть статью: ${article.title}`}
       className={cn(
-        "group flex flex-col bg-white p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-50",
+        "group flex flex-col bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-50",
         cardHoverCn,
         className,
       )}>
-      {/* Tag + reading time */}
-      <div className="flex items-center gap-2 mb-4">
-        <span className="inline-flex items-center gap-1 text-xs text-zinc-400">
-          <Clock className="h-3 w-3" />
-          {readingTime(article.description)}
-        </span>
+      <div className="p-6 flex-1">
+        {/* Tag + reading time */}
+        <div className="flex items-center gap-2 mb-4">
+          <span className="inline-flex items-center gap-1 text-xs text-zinc-400">
+            <Clock className="h-3 w-3" />
+            {readingTime(article.description)}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-lg font-bold leading-snug text-zinc-900 group-hover:text-blue-600 transition-colors duration-200 mb-2">
+          {article.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-base leading-relaxed text-zinc-500 line-clamp-3 flex-1">{article.description}</p>
       </div>
 
-      {/* Title */}
-      <h3 className="text-lg font-bold leading-snug text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 mb-2">
-        {article.title}
-      </h3>
-
-      {/* Description */}
-      <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 line-clamp-3 flex-1">{article.description}</p>
-
       {/* Footer */}
-      <div className="mt-5 pt-4 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
-        <div className="flex items-center gap-2 ">
-          {article.author && <span className="text-xs mt-1 font-medium text-zinc-600 dark:text-zinc-400">{article.author}</span>}
+      <div className="p-6 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+        <div className="flex items-center gap-2 text-sm">
+          {article.author && <span className="font-medium text-zinc-600">{article.author}</span>}
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-xs text-zinc-400">{formatDate(article.date)}</span>
-          <ArrowRight className="h-4 w-4 text-violet-500 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+          <span className="text-sm text-zinc-400">{formatDate(article.date)}</span>
+          <ArrowRight className="h-4 w-4 text-blue-600 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
         </div>
       </div>
     </Link>

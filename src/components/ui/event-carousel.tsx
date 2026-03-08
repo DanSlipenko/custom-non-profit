@@ -32,7 +32,7 @@ export interface EventCarouselProps {
   className?: string;
 }
 
-export function EventCarousel({ heading = "Новости", events, viewAllHref, viewAllCount, className }: EventCarouselProps) {
+export function EventCarousel({ heading = "Новости", events, className }: EventCarouselProps) {
   const [api, setApi] = useState<CarouselApi>();
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -66,15 +66,15 @@ export function EventCarousel({ heading = "Новости", events, viewAllHref,
           }}
           opts={{ align: "start", slidesToScroll: 1 }}
           className="w-full">
-          <CarouselContent className="py-8 px-2">
+          <CarouselContent className="p-6">
             {events.map((event, i) => {
               const Tag = event.href ? "a" : "div";
               return (
-                <CarouselItem key={`${event.title}-${i}`} className="basis-[300px] pl-4">
+                <CarouselItem key={`${event.title}-${i}`} className="basis-[350px] pl-4">
                   <Tag
                     {...(event.href ? { href: event.href } : {})}
                     className={cn(
-                      "group relative flex min-h-[420px] w-full flex-col justify-between overflow-hidden rounded-3xl bg-zinc-800",
+                      "group relative flex min-h-[30rem] w-full flex-col justify-between bg-zinc-800",
                       cardHoverCn,
                     )}>
                     {/* Background image */}
@@ -89,19 +89,19 @@ export function EventCarousel({ heading = "Новости", events, viewAllHref,
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/40" />
 
                     {/* Top: label + date */}
-                    <div className="relative z-10 p-4">
+                    <div className="relative z-10 p-6 flex flex-col gap-1 text-xs font-semibold uppercase tracking-[0.15em] text-white/70 group-hover:text-white">
                       {event.label && (
-                        <div className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/70">{event.label}</div>
+                        <div className="">{event.label}</div>
                       )}
                       {event.date && (
-                        <div className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/70">{event.date}</div>
+                        <div className="">{event.date}</div>
                       )}
                     </div>
 
                     {/* Bottom: title + learn more */}
-                    <div className="relative z-10 p-4">
+                    <div className="relative z-10 p-6">
                       <div className="text-lg font-bold leading-snug text-white">{event.title}</div>
-                      <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 transition-colors group-hover:text-white">
+                      <div className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/60 transition-colors group-hover:text-white">
                         Подробнее
                       </div>
                     </div>
@@ -110,24 +110,7 @@ export function EventCarousel({ heading = "Новости", events, viewAllHref,
               );
             })}
 
-            {/* "View all" card */}
-            {viewAllHref && (
-              <CarouselItem className="basis-[300px] pl-4">
-                <a
-                  href={viewAllHref}
-                  className="group flex h-full min-h-[420px] flex-col items-center justify-center gap-4 rounded-3xl border-2 border-dashed border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 transition-all duration-300 hover:border-primary/40 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:-translate-y-1">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 transition-colors group-hover:bg-primary/10">
-                    <ChevronRight className="h-7 w-7 text-zinc-400 group-hover:text-primary transition-colors" strokeWidth={1.5} />
-                  </div>
-                  <div className="text-center">
-                    <p className="text-base font-semibold text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-white">
-                      Все события
-                    </p>
-                    {viewAllCount !== undefined && <p className="mt-1 text-sm text-zinc-400 dark:text-zinc-500">{viewAllCount} событий</p>}
-                  </div>
-                </a>
-              </CarouselItem>
-            )}
+
           </CarouselContent>
         </Carousel>
       </div>
@@ -140,13 +123,13 @@ export function EventCarousel({ heading = "Новости", events, viewAllHref,
           variant="outline"
           size="md"
           className={cn(
-            "flex h-12 flex-1 items-center !bg-white justify-center rounded-full border border-zinc-200 transition-colors dark:border-zinc-800",
+            "flex h-12 flex-1 items-center justify-center group rounded-full border border-zinc-200 transition-colors",
             canScrollLeft ?
               "text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900"
             : "text-zinc-300 dark:text-zinc-700 cursor-default",
           )}
           aria-label="Назад">
-          <ChevronLeft strokeWidth={1.2} />
+          <ChevronLeft strokeWidth={1.2} className="group-hover:translate-x-1 transition-transform duration-200" />
           Назад
         </Button>
         <Button
@@ -155,14 +138,14 @@ export function EventCarousel({ heading = "Новости", events, viewAllHref,
           variant="outline"
           size="md"
           className={cn(
-            "flex h-12 flex-1 items-center !bg-white justify-center rounded-full border border-zinc-200 transition-colors dark:border-zinc-800",
+            "flex h-12 flex-1 items-center justify-center group rounded-full border border-zinc-200 transition-colors",
             canScrollRight ?
               "text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900"
             : "text-zinc-300 dark:text-zinc-700 cursor-default",
           )}
           aria-label="Вперёд">
           Вперед
-          <ChevronRight strokeWidth={1.2} />
+          <ChevronRight strokeWidth={1.2} className="group-hover:translate-x-1 transition-transform duration-200" />
         </Button>
       </div>
     </div>

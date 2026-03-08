@@ -14,7 +14,7 @@ function QaAccordionItem({ item }: { item: QaItem }) {
 
   return (
     <div
-      className="border-b px-10 py-6 border-zinc-200 hover:bg-blue-50 cursor-pointer dark:border-zinc-800"
+      className="border-b px-10 py-6 border-zinc-200 hover:bg-blue-100 cursor-pointer dark:border-zinc-800"
       onClick={() => setOpen((o) => !o)}>
       <div className="flex w-full items-center justify-between gap-4 py-5 text-left text-base font-medium text-zinc-950 transition-colors">
         <span>{item.question}</span>

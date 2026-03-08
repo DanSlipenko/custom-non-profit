@@ -42,7 +42,7 @@ export function VideoCarousel({ videos, className }: VideoCarouselProps) {
   return (
     <div className={cn("space-y-6", className)}>
       {/* Scrollable row */}
-      <div className="overflow-visible bg-white/10 backdrop-blur-sm rounded-4xl [&_.embla\_\_viewport]:overflow-visible p-6">
+      <div className="overflow-visible backdrop-blur-sm rounded-4xl [&_.embla\_\_viewport]:overflow-visible">
         <Carousel
           setApi={(emblaApi) => {
             setApi(emblaApi);
@@ -50,7 +50,7 @@ export function VideoCarousel({ videos, className }: VideoCarouselProps) {
           }}
           opts={{ align: "start", slidesToScroll: 1 }}
           className="w-full">
-          <CarouselContent className="py-6 px-2">
+          <CarouselContent className="p-6">
             {videos.map((video) => (
               <CarouselItem key={video.id} className="px-4 basis-[500px]">
                 <VideoCard video={video} />
@@ -68,13 +68,13 @@ export function VideoCarousel({ videos, className }: VideoCarouselProps) {
           variant="outline"
           size="md"
           className={cn(
-            "flex h-12 flex-1 items-center !bg-white justify-center rounded-full border border-zinc-200 transition-colors dark:border-zinc-800",
+            "flex h-12 flex-1 items-center justify-center group rounded-full border border-zinc-200 transition-colors disabled:opacity-100 disabled:border-zinc-200 dark:disabled:border-zinc-800",
             canScrollLeft ?
               "text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900"
-            : "text-zinc-300 dark:text-zinc-700 cursor-default",
+            : "!bg-white !text-zinc-300 dark:bg-zinc-900 dark:text-zinc-700 cursor-default",
           )}
           aria-label="Назад">
-          <ChevronLeft strokeWidth={1.2} />
+          <ChevronLeft strokeWidth={1.2} className="group-hover:-translate-x-0.5 transition-transform duration-200" />
           Назад
         </Button>
         <Button
@@ -83,14 +83,14 @@ export function VideoCarousel({ videos, className }: VideoCarouselProps) {
           variant="outline"
           size="md"
           className={cn(
-            "flex h-12 flex-1 items-center !bg-white justify-center rounded-full border border-zinc-200 transition-colors dark:border-zinc-800",
+            "flex h-12 flex-1 items-center justify-center group rounded-full border border-zinc-200 transition-colors disabled:opacity-100 disabled:border-zinc-200 dark:disabled:border-zinc-800",
             canScrollRight ?
               "text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900"
-            : "text-zinc-300 dark:text-zinc-700 cursor-default",
+            : "!bg-white !text-zinc-300 dark:bg-zinc-900 dark:text-zinc-700 cursor-default",
           )}
           aria-label="Вперёд">
           Вперед
-          <ChevronRight strokeWidth={1.2} />
+          <ChevronRight strokeWidth={1.2} className="group-hover:translate-x-1 transition-transform duration-200" />
         </Button>
       </div>
     </div>
