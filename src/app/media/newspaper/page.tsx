@@ -12,6 +12,9 @@ import { newspaper } from "./data";
 import { authorColor } from "@/components/article-card";
 import { NewspaperCard } from "@/components/newspaper-card";
 
+import { cn } from "@/lib/cn";
+import { cardHoverCn } from "@/lib/variants";
+
 export const metadata: Metadata = {
   title: "Газета",
   description: "Официальные печатные издания и вестники общины.",
@@ -68,7 +71,11 @@ export default function NewspaperPage() {
         <section className="bg-white dark:bg-zinc-950">
           <Container className="py-16 sm:py-20">
             <p className="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-6">Последний выпуск</p>
-            <div className="group relative block overflow-hidden rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-blue-950/20 dark:via-zinc-950 dark:to-sky-950/10 shadow-none transition-all duration-300 hover:shadow-primary">
+            <div
+              className={cn(
+                "group relative block overflow-hidden rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-gradient-to-br from-blue-50 via-white group to-sky-50 dark:from-blue-950/20 dark:via-zinc-950 dark:to-sky-950/10 shadow-none",
+                cardHoverCn,
+              )}>
               {/* Decorative blobs */}
               <div className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full bg-blue-200/40 dark:bg-blue-800/10 blur-3xl" />
               <div className="pointer-events-none absolute -bottom-20 -left-10 h-48 w-48 rounded-full bg-sky-200/40 dark:bg-sky-800/10 blur-3xl" />
@@ -83,8 +90,8 @@ export default function NewspaperPage() {
                   </div>
 
                   {/* Title */}
-                  <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-2 leading-snug mb-4">
-                    <Newspaper className="h-8 w-8 text-zinc-800 dark:text-zinc-400" strokeWidth={1.5} />
+                  <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white flex items-center gap-2 leading-snug mb-4 transition-colors duration-200 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                    <Newspaper className="h-8 w-8" strokeWidth={1.5} />
                     {featured.title}
                   </h2>
 

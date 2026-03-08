@@ -5,6 +5,7 @@ import { cn } from "@/lib/cn";
 import { Button } from "./button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
+import { cardHoverCn } from "@/lib/variants";
 
 export interface EventItem {
   /** Category or label shown above the title (e.g. "MESSAGE", "EVENTS") */
@@ -72,7 +73,10 @@ export function EventCarousel({ heading = "Новости", events, viewAllHref,
                 <CarouselItem key={`${event.title}-${i}`} className="basis-[300px] pl-4">
                   <Tag
                     {...(event.href ? { href: event.href } : {})}
-                    className="group relative flex min-h-[420px] w-full flex-col justify-between overflow-hidden rounded-3xl bg-zinc-800">
+                    className={cn(
+                      "group relative flex min-h-[420px] w-full flex-col justify-between overflow-hidden rounded-3xl bg-zinc-800",
+                      cardHoverCn,
+                    )}>
                     {/* Background image */}
                     {event.imageSrc && (
                       <img

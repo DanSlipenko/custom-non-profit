@@ -1,5 +1,6 @@
 import { cn } from "@/lib/cn";
 import { Badge } from "./badge";
+import { cardHoverCn } from "@/lib/variants";
 
 export interface PersonCardProps {
   name: string;
@@ -29,11 +30,7 @@ export function PersonCard({
   className,
 }: PersonCardProps) {
   return (
-    <div
-      className={cn(
-        "group relative flex flex-col sm:flex-row overflow-hidden rounded-3xl bg-zinc-50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900",
-        className,
-      )}>
+    <div className={cn(cn("group relative flex flex-col sm:flex-row overflow-hidden bg-zinc-50", cardHoverCn), className)}>
       {/* Left Media Area */}
       <div className={cn("relative h-48 sm:h-auto sm:w-2/5 shrink-0 overflow-hidden bg-gradient-to-br", !imageSrc && colorClass)}>
         <div className="absolute inset-0 z-10 bg-gradient-to-t sm:bg-gradient-to-r from-transparent to-black/10 dark:to-zinc-900/40 sm:to-zinc-900" />
@@ -55,7 +52,7 @@ export function PersonCard({
       {/* Right Content Area */}
       <div className="flex flex-1 flex-col justify-between p-6 sm:p-8 border-l border-zinc-200 dark:border-zinc-800">
         <div className="flex-1 flex flex-col justify-center space-y-4 mb-6">
-          <h3 className="text-2xl font-bold tracking-tight text-zinc-950 dark:text-white">{name}</h3>
+          <h3 className="text-2xl font-bold tracking-tight text-zinc-950 group-hover:text-blue-600 dark:text-white">{name}</h3>
 
           {description && <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">{description}</p>}
         </div>

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import type { TorahPortion, TorahChapter } from "@/lib/torah-data";
+import { cn } from "@/lib/cn";
+import { cardHoverCn } from "@/lib/variants";
 
 interface ReadingPreviewCardProps {
   direction: "prev" | "next";
@@ -15,9 +17,7 @@ export function ReadingPreviewCard({ direction, portion, chapter, currentOffset 
   const href = `/read-torah?offset=${targetOffset}#reader`;
 
   return (
-    <Link
-      href={href}
-      className="group relative rounded-3xl border border-zinc-200 bg-white p-8 text-left transition-all duration-300 hover:border-zinc-300 hover:shadow-secondary dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700 w-full block">
+    <Link href={href} className={cn("group relative rounded-3xl bg-white p-8 text-left w-full block", cardHoverCn)}>
       {/* Label */}
       <div className={`flex items-center gap-2 mb-4 ${isPrev ? "" : "justify-end"}`}>
         {isPrev && <ChevronLeft className="h-4 w-4 text-zinc-400" />}
@@ -29,7 +29,7 @@ export function ReadingPreviewCard({ direction, portion, chapter, currentOffset 
 
       {/* Title */}
       <div className="flex items-center gap-2 mb-1">
-        <h3 className="text-xl font-bold text-zinc-950 dark:text-white">{portion.name}</h3>
+        <h3 className="text-xl font-bold text-zinc-950 group-hover:text-blue-600">{portion.name}</h3>
         <span className="text-lg text-zinc-300 dark:text-zinc-600" dir="rtl">
           {portion.hebrewName}
         </span>

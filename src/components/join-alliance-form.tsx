@@ -55,7 +55,7 @@ export function JoinAllianceForm() {
   return (
     <section className="bg-white dark:bg-zinc-950">
       <Container className="">
-        <div className="mx-auto rounded-3xl border border-zinc-200 bg-white p-8 shadow-primary dark:border-zinc-800 dark:bg-zinc-950 sm:p-10">
+        <div className="mx-auto rounded-3xl border border-zinc-200 bg-white p-8 shadow-secondary dark:border-zinc-800 dark:bg-zinc-950 sm:p-10">
           <form onSubmit={onSubmit} className="space-y-4">
             <div className="mb-1 text-2xl font-semibold text-zinc-950 dark:text-white">Заявка на вступление</div>
             <p className="mb-6 text-zinc-500 dark:text-zinc-400">Заполните форму ниже, и мы свяжемся с вами в ближайшее время.</p>

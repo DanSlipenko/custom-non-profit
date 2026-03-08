@@ -1,5 +1,7 @@
 import { Download, Newspaper } from "lucide-react";
 import { formatDate, type MediaItem } from "@/lib/media-data";
+import { cn } from "@/lib/cn";
+import { cardHoverCn } from "@/lib/variants";
 
 interface NewspaperCardProps {
   issue: MediaItem;
@@ -8,8 +10,7 @@ interface NewspaperCardProps {
 
 export function NewspaperCard({ issue, className = "" }: NewspaperCardProps) {
   return (
-    <div
-      className={`group flex flex-col h-full rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 transition-all duration-300 hover:-translate-y-1 hover:shadow-primary overflow-hidden hover:border-primary/20 dark:hover:border-primary/20 ${className}`}>
+    <div className={cn("group flex flex-col h-full bg-white overflow-hidden", cardHoverCn, className)}>
       {/* Date */}
       <div className="flex items-center gap-2 justify-between bg-gradient-to-r from-blue-200/90 via-blue-200/70 to-blue-100/80 dark:border-zinc-800 p-6 border-b border-zinc-200 dark:border-zinc-800">
         {issue.author && (
@@ -24,7 +25,7 @@ export function NewspaperCard({ issue, className = "" }: NewspaperCardProps) {
       <div className="p-6">
         <div className="flex flex-col gap-2 py-4">
           {/* Title */}
-          <h3 className="text-xl font-bold leading-snug text-zinc-900 dark:text-white transition-colors duration-200 mb-2">
+          <h3 className="text-xl font-bold leading-snug group-hover:text-blue-500 text-zinc-900 dark:text-white transition-colors duration-200 mb-2">
             {issue.title}
           </h3>
 

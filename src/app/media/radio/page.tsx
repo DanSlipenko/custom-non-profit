@@ -43,7 +43,7 @@ export default function RadioPage() {
         <Container className="py-16 sm:py-24">
           <div>
             {/* Card */}
-            <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 shadow-primary dark:border-zinc-800 dark:from-emerald-950/30 dark:via-zinc-950 dark:to-teal-950/20">
+            <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 shadow-secondary dark:border-zinc-800 dark:from-emerald-950/30 dark:via-zinc-950 dark:to-teal-950/20">
               {/* Decorative background circles */}
               <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-emerald-200/30 blur-3xl dark:bg-emerald-800/20" />
               <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-teal-200/30 blur-3xl dark:bg-teal-800/20" />
@@ -111,7 +111,7 @@ export default function RadioPage() {
           <p className="mb-8 text-zinc-600 dark:text-zinc-400">Еженедельная программа нашего радио</p>
 
           {/* Desktop table */}
-          <div className="hidden overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-primary dark:border-zinc-800 dark:bg-zinc-950 sm:block">
+          <div className="hidden overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-secondary dark:border-zinc-800 dark:bg-zinc-950 sm:block">
             <table className="w-full border-collapse text-sm">
               <thead>
                 <tr className="border-b border-zinc-200 dark:border-zinc-800">

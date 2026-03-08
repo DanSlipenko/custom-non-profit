@@ -122,7 +122,7 @@ export function ContactForm({ imageSrc }: ContactFormProps) {
     <section className="bg-white dark:bg-zinc-950">
       <Container>
         <div
-          className={`mx-auto rounded-3xl border border-zinc-200 bg-white shadow-primary dark:border-zinc-800 dark:bg-zinc-950 overflow-hidden ${imageSrc ? "max-w-6xl" : "max-w-4xl"}`}>
+          className={`mx-auto rounded-3xl border border-zinc-200 bg-white shadow-secondary dark:border-zinc-800 dark:bg-zinc-950 overflow-hidden ${imageSrc ? "max-w-6xl" : "max-w-4xl"}`}>
           {imageSrc ?
             <div className="grid lg:grid-cols-2">
               <div className="p-8 sm:p-10">{formContent}</div>

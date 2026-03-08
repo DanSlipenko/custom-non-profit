@@ -65,7 +65,7 @@ export function HistorySection() {
 
                   {/* Card (all aligned to the right side of the line) */}
                   <div className="w-full sm:w-[85%] lg:w-[75%]">
-                    <div className="rounded-3xl border border-zinc-200/80 bg-white/80 p-6 shadow-secondary backdrop-blur-sm transition-shadow hover:shadow-primary hover:border-blue-200 dark:border-zinc-800 dark:bg-zinc-900/80 sm:p-8">
+                    <div className="rounded-3xl border border-zinc-200/80 bg-white/80 p-6 shadow-secondary backdrop-blur-sm transition-shadow dark:border-zinc-800 dark:bg-zinc-900/80 sm:p-8">
                       <div className="flex flex-col gap-2 sm:items-baseline">
                         <span className="text-4xl font-bold tracking-wider text-zink-600 dark:text-blue-500 px-4 py-2 bg-blue-200/80 shadow-primary rounded-full">
                           {m.year}

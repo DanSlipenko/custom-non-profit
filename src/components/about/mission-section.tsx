@@ -2,6 +2,8 @@ import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Quote } from "lucide-react";
 import { Button } from "../ui/button";
+import { cn } from "@/lib/cn";
+import { cardHoverCn } from "@/lib/variants";
 
 const values = [
   {
@@ -63,9 +65,7 @@ export function MissionSection() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
             {values.map((v) => {
               return (
-                <div
-                  key={v.title}
-                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50 shadow-secondary transition-all hover:-translate-y-1 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900">
+                <div key={v.title} className={cn("group flex h-full flex-col overflow-hidden rounded-3xl bg-zinc-50", cardHoverCn)}>
                   <div className="relative h-48 w-full shrink-0 overflow-hidden bg-zinc-200 dark:bg-zinc-800 sm:h-74">
                     <img
                       src={v.image}
@@ -80,7 +80,9 @@ export function MissionSection() {
                   </div>
                   <div className="flex flex-1 flex-col px-8 pb-8 pt-6">
                     <div className="space-y-4">
-                      <h3 className="text-2xl font-bold tracking-tight text-zinc-950 dark:text-white">{v.title}</h3>
+                      <h3 className="text-2xl font-bold tracking-tight text-zinc-950 group-hover:text-blue-600 dark:text-white">
+                        {v.title}
+                      </h3>
                       <p className="text-base leading-7 text-zinc-600 dark:text-zinc-400">{v.body}</p>
                     </div>
                   </div>

@@ -3,6 +3,9 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { getDailyReading, torahPortions, torahVersion } from "@/lib/torah-data";
 import { ReadingPreviewCard } from "@/components/reading-preview-card";
+
+import { cn } from "@/lib/cn";
+import { cardHoverCn } from "@/lib/variants";
 import {
   BookOpen,
   Scroll,
@@ -205,7 +208,7 @@ export default async function ReadTorahPage({ searchParams }: { searchParams: Pr
             <div className="flex flex-col lg:flex-row gap-6">
               {/* ── Scripture (left) ── */}
               <div className="lg:w-3/5">
-                <div className="rounded-3xl border border-zinc-200 bg-white shadow-secondary dark:border-zinc-800 dark:bg-zinc-950 h-[70vh] flex flex-col overflow-hidden">
+                <div className="rounded-3xl border border-zinc-200 bg-white shadow-secondary h-[70vh] flex flex-col overflow-hidden">
                   {/* Chapter heading */}
                   <div className="flex items-center justify-between border-b border-zinc-200 px-8 py-5 dark:border-zinc-800 sm:px-10">
                     <div className="flex items-center gap-3">
@@ -249,7 +252,7 @@ export default async function ReadTorahPage({ searchParams }: { searchParams: Pr
                     {offset > -1 ?
                       <Link
                         href={`/read-torah?offset=${offset - 1}#reader`}
-                        className="flex items-center gap-2 w-full border-r py-6 px-8 hover:bg-blue-100 border-zinc-200 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-zinc-200 group/link">
+                        className="flex items-center justify-start gap-2 w-full py-6 px-8 hover:bg-blue-100 border-zinc-200 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-zinc-200 group/link">
                         <ChevronLeft className="h-4 w-4 transition-transform group-hover/link:-translate-x-1" />
                         Предыдущая
                       </Link>

@@ -11,7 +11,8 @@ import { PodcastEpisodeList } from "@/components/podcast-episode-list";
 import { ArticleCard } from "@/components/article-card";
 import { BookCard } from "@/components/book-card";
 import { NewspaperCard } from "@/components/newspaper-card";
-import { Download, ArrowRight } from "lucide-react";
+import { VideoCarousel } from "@/components/ui/video-carousel";
+import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Медия",
@@ -124,72 +125,19 @@ function VideoLayoutPreview() {
   const allDisplayVideos = [...(featured ? [featured] : []), ...highlighted, ...restSlice];
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 mt-10">
-      {allDisplayVideos.map((video) => (
-        <div
-          key={video.id}
-          className="group flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-secondary hover:shadow-primary transition-all duration-300 hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700">
-          {/* Thumbnail with play */}
-          <Link href={video.href || "#"} className="relative aspect-video w-full overflow-hidden bg-zinc-100 dark:bg-zinc-900 block">
-            {video.imageSrc ?
-              <img
-                src={video.imageSrc}
-                alt={video.title}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            : <div className="flex h-full w-full items-center justify-center">
-                <svg
-                  className="h-12 w-12 text-zinc-300 dark:text-zinc-700"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1}>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"
-                  />
-                </svg>
-              </div>
-            }
-            {/* Play button */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm dark:bg-zinc-950/80">
-                <svg className="ml-0.5 h-6 w-6 text-zinc-950 dark:text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-            </div>
-          </Link>
-
-          {/* Info */}
-          <div className="flex flex-1 flex-col justify-between">
-            <Link href={video.href || "#"} className="p-5 block">
-              <h3 className="text-xl font-semibold leading-snug text-zinc-950 dark:text-white line-clamp-2">{video.title}</h3>
-              <p className="mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2">{video.description}</p>
-            </Link>
-            {video.author && video.authorHref ?
-              <Link
-                href={video.authorHref}
-                className="group/link flex items-center justify-between text-xs border-t border-zinc-200 dark:border-zinc-800 py-6 px-5 text-zinc-500 hover:bg-blue-50 hover:text-zinc-950 dark:hover:bg-zinc-900 dark:hover:text-white transition-colors">
-                <span className="font-medium flex items-center gap-2">
-                  {video.author} <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                </span>
-                <span>{formatDate(video.date)}</span>
-              </Link>
-            : <div className="flex items-center justify-between text-sm text-zinc-500 border-t border-zinc-200 dark:border-zinc-800 py-6 px-5">
-                {video.author && (
-                  <span className="font-medium flex items-center gap-2">
-                    {video.author} <ArrowRight className="w-4 h-4" />
-                  </span>
-                )}
-                <span>{formatDate(video.date)}</span>
-              </div>
-            }
-          </div>
-        </div>
-      ))}
-    </div>
+    <VideoCarousel
+      className="mt-10"
+      videos={allDisplayVideos.map((v) => ({
+        id: v.id,
+        title: v.title,
+        description: v.description,
+        imageSrc: v.imageSrc,
+        href: v.href ?? "#",
+        author: v.author,
+        authorHref: v.authorHref,
+        date: formatDate(v.date),
+      }))}
+    />
   );
 }
 
@@ -252,7 +200,7 @@ function RadioPreview() {
       {/* Mini player card */}
       <Link
         href="/media/radio"
-        className="group relative flex flex-col items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-8 shadow-secondary transition-all duration-300 hover:shadow-primary hover:border-zinc-300 dark:border-zinc-800 dark:from-emerald-950/30 dark:via-zinc-950 dark:to-teal-950/20 dark:hover:border-zinc-700 sm:p-10">
+        className="group relative flex flex-col items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-8 shadow-secondary transition-all duration-300 sm:p-10">
         {/* Decorative blurs */}
         <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-emerald-200/30 blur-3xl dark:bg-emerald-800/20" />
         <div className="pointer-events-none absolute -bottom-12 -left-12 h-40 w-40 rounded-full bg-teal-200/30 blur-3xl dark:bg-teal-800/20" />

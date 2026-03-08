@@ -1,12 +1,17 @@
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
 import { type MediaItem } from "@/lib/media-data";
+import { cn } from "@/lib/cn";
+import { cardHoverCn } from "@/lib/variants";
 
 export function RecommendedBookCard({ book }: { book: MediaItem }) {
   return (
     <Link
       href={book.href || "#"}
-      className="group flex flex-col gap-6 rounded-3xl border border-zinc-200 bg-white p-6 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-blue-700/50">
+      className={cn(
+        "group flex flex-col gap-6 border border-zinc-200 bg-white p-6 sm:p-6 dark:border-zinc-800 dark:bg-zinc-950",
+        cardHoverCn,
+      )}>
       {/* Book spine / cover */}
       <div className="flex h-56 sm:h-72 w-full shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-100 to-blue-50 shadow-inner dark:from-blue-900/30 dark:to-blue-950/10 transition-transform duration-300 group-hover:scale-[1.03] ring-1 ring-blue-200/50 dark:ring-blue-800/20">
         <svg className="h-20 w-20 text-blue-500/80 drop-shadow-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
@@ -43,7 +48,10 @@ export function BookCard({ book }: { book: MediaItem }) {
   return (
     <Link
       href={book.href || "#"}
-      className="group flex flex-col gap-6 rounded-2xl border border-zinc-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-blue-700/50">
+      className={cn(
+        "group flex flex-col gap-6 rounded-2xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950",
+        cardHoverCn,
+      )}>
       {/* Book spine / cover */}
       <div className="flex h-62 w-full shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-100 to-blue-50 shadow-inner dark:from-blue-900/30 dark:to-blue-950/10 transition-transform duration-300 group-hover:scale-[1.02] ring-1 ring-blue-200/50 dark:ring-blue-800/20">
         <svg className="h-16 w-16 text-blue-500/80 drop-shadow-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>

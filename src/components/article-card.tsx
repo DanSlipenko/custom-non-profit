@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen, Clock } from "lucide-react";
 import { formatDate, type MediaItem } from "@/lib/media-data";
+import { cn } from "@/lib/cn";
+import { cardHoverCn } from "@/lib/variants";
 
 export function getArticleHref(id: string) {
   return `/articles/${id}`;
@@ -39,7 +41,11 @@ export function ArticleCard({ article, className = "" }: ArticleCardProps) {
     <Link
       href={`/media/${article.href || getArticleHref(article.id)}`}
       aria-label={`Открыть статью: ${article.title}`}
-      className={`group flex flex-col rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-primary hover:border-primary/20 dark:hover:border-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-50 dark:focus-visible:ring-offset-zinc-950 ${className}`}>
+      className={cn(
+        "group flex flex-col bg-white p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-50",
+        cardHoverCn,
+        className,
+      )}>
       {/* Tag + reading time */}
       <div className="flex items-center gap-2 mb-4">
         <span className="inline-flex items-center gap-1 text-xs text-zinc-400">
@@ -49,7 +55,7 @@ export function ArticleCard({ article, className = "" }: ArticleCardProps) {
       </div>
 
       {/* Title */}
-      <h3 className="text-lg font-bold leading-snug text-zinc-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors duration-200 mb-2">
+      <h3 className="text-lg font-bold leading-snug text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 mb-2">
         {article.title}
       </h3>
 

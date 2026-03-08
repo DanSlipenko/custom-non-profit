@@ -11,6 +11,8 @@ import { communities, getCommunityBySlug } from "@/lib/communities";
 import { getEventsByCommunity } from "@/lib/events";
 import { getRecentByCategory, formatDate, type MediaItem } from "@/lib/media-data";
 import { SubscribeToNewsletter } from "@/components/subscribe-to-newsletter";
+import { cardHoverCn } from "@/lib/variants";
+import { cn } from "@/lib/cn";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -151,7 +153,7 @@ function MediaVideosSection() {
           {videos.map((video: MediaItem) => (
             <div
               key={video.id}
-              className="group flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-secondary hover:shadow-primary transition-all duration-300 hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700">
+              className={cn("group flex flex-col overflow-hidden rounded-3xl group bg-white transition-all duration-300 ", cardHoverCn)}>
               <Link href={video.href || "#"} className="relative aspect-video w-full overflow-hidden bg-zinc-100 dark:bg-zinc-900 block">
                 {video.imageSrc ?
                   <img
@@ -184,7 +186,9 @@ function MediaVideosSection() {
               </Link>
               <div className="flex flex-1 flex-col justify-between">
                 <Link href={video.href || "#"} className="p-5 block">
-                  <h3 className="text-xl font-semibold leading-snug text-zinc-950 dark:text-white line-clamp-2">{video.title}</h3>
+                  <h3 className="text-xl font-semibold leading-snug text-zinc-950 group-hover:text-blue-500 dark:text-white line-clamp-2">
+                    {video.title}
+                  </h3>
                   <p className="mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2">{video.description}</p>
                 </Link>
                 {video.author && video.authorHref ?

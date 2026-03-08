@@ -1,4 +1,5 @@
 import { cn } from "@/lib/cn";
+import { cardHoverCn } from "@/lib/variants";
 
 export interface CommunityCardProps {
   /** Path or URL for the community image (optional — shows placeholder if omitted) */
@@ -24,7 +25,7 @@ export function CommunityCard({ imageSrc, imageAlt, name, address, leader, servi
     <Wrapper
       {...(href ? { href } : {})}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-3xl border border-zinc-200 hover:border-zinc-300 bg-white shadow-secondary transition-all duration-300 dark:border-zinc-800 dark:bg-zinc-950",
+        cn("group flex flex-col overflow-hidden rounded-3xl bg-white group", cardHoverCn),
         href && "cursor-pointer",
         className,
       )}>
@@ -50,13 +51,14 @@ export function CommunityCard({ imageSrc, imageAlt, name, address, leader, servi
                 d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21"
               />
             </svg>
+            1
           </div>
         }
       </div>
 
       {/* Info area */}
       <div className="flex flex-1 flex-col justify-center p-6">
-        <h3 className="text-lg font-semibold leading-snug text-zinc-950 dark:text-white">{name}</h3>
+        <h3 className="text-lg font-semibold leading-snug text-zinc-950 group-hover:text-blue-600 dark:text-white">{name}</h3>
         <p className="mt-1 leading-relaxed text-zinc-500 dark:text-zinc-400">{address}</p>
         {leader && (
           <p className="mt-2 text-zinc-600 dark:text-zinc-400">

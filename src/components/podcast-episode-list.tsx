@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { ChevronRight, Play, Mic } from "lucide-react";
 import { formatDate } from "@/lib/media-data";
+import { cn } from "@/lib/cn";
+import { cardHoverCn } from "@/lib/variants";
 
 export interface PodcastEpisode {
   id: string | number;
@@ -25,9 +27,7 @@ export function PodcastEpisodeList({ episodes }: PodcastEpisodeListProps) {
   return (
     <div className="space-y-4">
       {episodes.map((episode, idx) => (
-        <div
-          key={episode.id}
-          className="flex items-stretch overflow-hidden rounded-2xl border border-zinc-200 shadow-secondary hover:shadow-primary transition-shadow duration-200 dark:border-zinc-800 dark:from-purple-950/20 dark:to-zinc-950">
+        <div key={episode.id} className={cn("flex bg-white items-stretch overflow-hidden rounded-2xl group", cardHoverCn)}>
           {/* Content */}
           <Link href={episode.href || "#"} className="group flex flex-1 items-center gap-4 p-4 sm:px-6 sm:py-6 min-w-0">
             {/* Episode number */}
@@ -37,7 +37,9 @@ export function PodcastEpisodeList({ episodes }: PodcastEpisodeListProps) {
 
             {/* Info */}
             <div className="flex-1 min-w-0">
-              <h3 className="text-base font-semibold text-zinc-950 dark:text-white truncate">{episode.title}</h3>
+              <h3 className="text-base font-semibold text-zinc-950 dark:text-white truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                {episode.title}
+              </h3>
               <div className="flex items-center gap-2 flex-wrap">
                 {episode.description && <p className="text-sm text-zinc-500 dark:text-zinc-400 truncate">{episode.description}</p>}
                 {episode.alliance &&

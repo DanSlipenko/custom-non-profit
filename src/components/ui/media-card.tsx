@@ -2,6 +2,7 @@ import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { formatDate } from "@/lib/media-data";
 import type { MediaItem } from "@/lib/media-data";
+import { cardHoverCn } from "@/lib/variants";
 
 const categoryColors: Record<string, string> = {
   videos: "bg-red-500/15 text-red-600 dark:text-red-400",
@@ -73,8 +74,10 @@ function CardContent({ item }: { item: MediaItem }) {
   );
 }
 
-const cardClasses =
-  "group flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition-all duration-300 hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700";
+const cardClasses = cn(
+  "group flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-950",
+  cardHoverCn,
+);
 
 export function MediaCard({ item, className }: { item: MediaItem; className?: string }) {
   if (item.href) {

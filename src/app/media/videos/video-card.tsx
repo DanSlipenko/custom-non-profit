@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { formatDate } from "@/lib/media-data";
 import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/cn";
+import { cardHoverCn } from "@/lib/variants";
 
 export interface VideoCardItem {
   id: string;
@@ -19,7 +21,7 @@ interface VideoCardProps {
 
 export function VideoCard({ video }: VideoCardProps) {
   return (
-    <div className="group flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white hover:shadow-primary transition-all duration-300 hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700">
+    <div className={cn("group flex flex-col overflow-hidden bg-white", cardHoverCn)}>
       {/* Thumbnail with play */}
       <Link href={video.href || "#"} className="relative aspect-video w-full overflow-hidden bg-zinc-100 dark:bg-zinc-900 block">
         {video.imageSrc ?
@@ -56,7 +58,9 @@ export function VideoCard({ video }: VideoCardProps) {
       {/* Info */}
       <div className="flex flex-1 flex-col justify-between">
         <Link href={video.href || "#"} className="p-5 block">
-          <h3 className="text-xl font-semibold leading-snug text-zinc-950 dark:text-white line-clamp-2">{video.title}</h3>
+          <h3 className="text-xl font-semibold leading-snug group-hover:text-blue-500 text-zinc-950 dark:text-white transition-colors duration-200 line-clamp-2">
+            {video.title}
+          </h3>
           <p className="mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2">{video.description}</p>
         </Link>
         {video.author && video.authorHref ?

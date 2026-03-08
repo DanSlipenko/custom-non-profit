@@ -39,7 +39,7 @@ export function QaSection({ title, description, items }: QaSectionProps) {
   return (
     <section className="bg-white dark:bg-zinc-950">
       <Container className="pb-14 sm:pb-20">
-        <div className="mx-auto rounded-3xl border border-zinc-200 bg-white shadow-primary dark:border-zinc-800 dark:bg-zinc-950">
+        <div className="mx-auto rounded-3xl border border-zinc-200 bg-white shadow-secondary dark:border-zinc-800 dark:bg-zinc-950">
           <div className="px-10 py-10 border-b border-zinc-200 dark:border-zinc-800">
             <h2 className="mb-1 text-2xl font-semibold text-zinc-950 dark:text-white">{title}</h2>
             {description && <p className="text-zinc-500 dark:text-zinc-400">{description}</p>}
